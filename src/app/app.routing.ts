@@ -11,7 +11,7 @@ export const AppRoutes: Routes = [{
         pathMatch: 'full',
     },{
         path: '',
-        //component: AdminLayoutComponent,
+        component: AdminLayoutComponent,
         children: [{
             path: '',
             //canActivate : [isAuthenticatedGuard],
