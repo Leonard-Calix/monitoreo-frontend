@@ -14,7 +14,7 @@ export const AppRoutes: Routes = [{
         //component: AdminLayoutComponent,
         children: [{
             path: '',
-            canActivate : [isAuthenticatedGuard],
+            //canActivate : [isAuthenticatedGuard],
             loadChildren: () => import('./dashboard/dashboard.module').then(x=>x.DashboardModule)
         },{
             path: 'components',
