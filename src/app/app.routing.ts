@@ -6,8 +6,8 @@ import { isNotAuthenticateGuard } from './guards/is-not-authenticate.guard';
 
 export const AppRoutes: Routes = [{
         path: '',
-        //redirectTo: 'dashboard',
-        redirectTo: 'pages/login',
+        redirectTo: 'dashboard',
+        //redirectTo: 'pages/login',
         pathMatch: 'full',
     },{
         path: '',
