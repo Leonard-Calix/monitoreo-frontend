@@ -1,20 +1,20 @@
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
-import { isAuthenticatedGuard } from './guards/is-authenticate.guard';
-import { isNotAuthenticateGuard } from './guards/is-not-authenticate.guard';
 
 export const AppRoutes: Routes = [{
         path: '',
         redirectTo: 'dashboard',
+<<<<<<< HEAD
         //redirectTo: 'pages/login',
+=======
+>>>>>>> a914c80fba9b6a3d6060be73a57390490cbc6c96
         pathMatch: 'full',
     },{
         path: '',
         component: AdminLayoutComponent,
         children: [{
             path: '',
-            //canActivate : [isAuthenticatedGuard],
             loadChildren: () => import('./dashboard/dashboard.module').then(x=>x.DashboardModule)
         },{
             path: 'components',
@@ -41,7 +41,6 @@ export const AppRoutes: Routes = [{
         },{
             path: '',
             component: AuthLayoutComponent,
-            //canActivate : [isNotAuthenticateGuard],
             children: [{
                 path: 'pages',
                 loadChildren: () => import('./pages/pages.module').then(x=>x.PagesModule)
