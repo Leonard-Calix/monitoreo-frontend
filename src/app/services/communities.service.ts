@@ -20,6 +20,10 @@ export class CommunitiesService {
   getAll() {
     return this.http.get(`${this.baseUrl}/communities`);
   }
+  
+  getByCommunityByMunicipalityId(id: number) {
+    return this.http.get(`${this.baseUrl}/communities/municipality/`+ id);
+  }
 
 
 }

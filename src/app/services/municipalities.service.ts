@@ -14,11 +14,14 @@ export class MunicipalitiesService {
   constructor(private readonly http: HttpClient) { }
 
   create(department: Municipality): Observable<any> {
-    return this.http.post(`${this.baseUrl}/communities`, department);
+    return this.http.post(`${this.baseUrl}/municipalities`, department);
   }
 
   getAll() {
-    return this.http.get(`${this.baseUrl}/communities`);
+    return this.http.get(`${this.baseUrl}/municipalities`);
   }
 
+  getByDepartmentId(id: number) {
+    return this.http.get(`${this.baseUrl}/municipalities/department/`+ id);
+  }
 }

@@ -2,7 +2,7 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card ">
+                <div class="card">
                     <div class="header">
                         <h4 class="title">Ficha de Monitoreo de Organizaciones Locales</h4>
                         <p class="category"></p>
@@ -12,113 +12,112 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
 
-                                    <div class="card">
+                                    <div class="card-0">
                                         <div class="header">
                                             <legend>Datos Generales</legend>
                                         </div>
                                         <div class="content">
                                             <form method="get" action="/" class="form-horizontal">
-                    
-                                                <fieldset>                                                    
+
+                                                <fieldset>
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">Fecha Monitoreo</label>
+                                                        <label class="col-sm-2 control-label" style="text-align: left;" >Fecha Monitoreo</label>
                                                         <div class="col-sm-10">
-                                                        <input type="text" class="form-control datetimepicker" placeholder="Fecha Monitoreo"/>
+                                                            <input [(ngModel)]="dateMonitory" type="date" class="form-control datetimepicker"
+                                                                placeholder="Fecha Monitoreo" />
                                                         </div>
                                                     </div>
                                                 </fieldset>
-                    
+
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">Departamento</label>
+                                                        <label style="text-align: left;" class="col-sm-2 control-label">Departamento</label>
                                                         <div class="col-sm-10">
-                                                             <select class="form-control" id="departamento" placeholder="Departamento">
+                                                            <select class="form-control"
+                                                                (change)="getMunicipalitiesByDeparment($event)"
+                                                                placeholder="Departamento">
                                                                 <option value="">Seleccione un Departamento</option>
-                                                                <option value="depto1">Departamento 1</option>
-                                                                <option value="depto2">Departamento 2</option>
-                                                                <option value="depto3">Departamento 3</option>
-                                                             </select>                                                    
+                                                                <option *ngFor="let item of departments"
+                                                                    value="{{ item.id }}">
+                                                                    {{ item.nameD }} </option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </fieldset>
-                    
+
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">Municipio</label>
+                                                        <label style="text-align: left;" class="col-sm-2 control-label">Municipio</label>
                                                         <div class="col-sm-10">
-                                                            <select class="form-control" id="municipio" placeholder="municipio">
+                                                            <select (change)="getMunicipalities($event)"
+                                                                class="form-control" id="municipio"
+                                                                placeholder="municipio">
                                                                 <option value="">Seleccione un Municipio</option>
-                                                                <option value="depto1">municipio 1</option>
-                                                                <option value="depto2">Municipio 2</option>
-                                                                <option value="depto3">Municipio 3</option>
-                                                             </select>  
+                                                                <option *ngFor="let item of municipalities"
+                                                                    value="{{ item.id }}"> {{ item.nameM }} </option>
+
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </fieldset>
-                    
+
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">Comunidad</label>
+                                                        <label style="text-align: left;" class="col-sm-2 control-label">Comunidad</label>
                                                         <div class="col-sm-10">
-                                                            <select class="form-control" id="comunidad" placeholder="comunidad">
-                                                                <option value="">Seleccione un Comunidad</option>
-                                                                <option value="depto1">Comunidad 1</option>
-                                                                <option value="depto2">Comunidad 2</option>
-                                                                <option value="depto3">Comunidad 3</option>
-                                                             </select> 
+                                                            <select [(ngModel)]="communityId" class="form-control"
+                                                                id="comunidad" placeholder="comunidad">
+                                                                <option value="0">Seleccione un Comunidad</option>
+                                                                <option *ngFor="let item of communities"
+                                                                    value="{{ item.id }}">{{ item.nameC }}</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </fieldset>
-                    
+
                                                 <fieldset>
                                                     <legend>Monitoreo de Organizaciones Locales</legend>
-                                                    <div class="form-group">
-                                                      <label class="col-sm-8 control-label">1. ¿La aldea tiene patronato organizado, legalizado y con personería jurídica?</label>
-                                                      <div class="col-sm-4">
-                                                        <label class="radio-inline">
-                                                          <input type="radio" name="radioPatronato" id="radioPatronatoSi" value="si" checked="">SI
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                          <input type="radio" name="radioPatronato" id="radioPatronatoNo" value="no">NO
-                                                        </label>
-                                                      </div>
+                                                    <div *ngFor="let item of question" class="form-group">
+                                                        <label class="col-sm-10 control-label"
+                                                            style="text-align: left;">{{ item.description }}</label>
+                                                        <div class="col-sm-2">
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="{{ item.id }}"
+                                                                    id="{{ item.id }}" value="true" />SI
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="{{ item.id }}"
+                                                                    id="{{ item.id }}" value="false" />NO
+                                                            </label>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                      <label class="col-sm-8 control-label">2. ¿La aldea tiene junta de agua organizada, legalizada y con personería jurídica?</label>
-                                                      <div class="col-sm-4">
-                                                        <label class="radio-inline">
-                                                          <input type="radio" name="radioAgua" id="radioAguaSi" value="si" checked="">SI
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                          <input type="radio" name="radioAgua" id="radioAguaNo" value="no">NO
-                                                        </label>
-                                                      </div>
-                                                    </div>
-                                                  </fieldset>
-                                                  
-                                                                                                 
-                                                    <fieldset>
-                                                    <legend>Recomendaciones</legend>                  
-                                             </fieldset>                    
+                                                </fieldset>
+
+
+                                                <fieldset>
+                                                    <legend>Recomendaciones</legend>
+                                                </fieldset>
                                                 <fieldset>
                                                     <div class="form-group">
-                                                      <label class="col-sm-2 control-label">Recomendaciones</label>
-                                                      <div class="col-sm-10">
-                                                        <textarea class="form-control valid" rows="4" placeholder="Ingrese sus recomendaciones aquí"></textarea>
-                                                      </div>
+                                                        <label class="col-sm-2 control-label" style="text-align: left;">Recomendaciones</label>
+                                                        <div class="col-sm-10">
+                                                            <textarea class="form-control valid" rows="4"
+                                                                placeholder="Ingrese sus recomendaciones aquí"></textarea>
+                                                        </div>
                                                     </div>
-                                                  </fieldset>   
-                                                <fieldset>   
+                                                </fieldset>
+                                                <fieldset>
                                                     <div class="center-btn">
-                                                        <button class="btn btn-success btn-fill btn-wd">Guardar</button>
-                                                      </div>
-                                                      
-                                                </fieldset>   
-                                                                                   
-                                            </form>                    
+                                                        <button (click)="save()"
+                                                            class="btn btn-success btn-fill btn-wd">Guardar</button>
+                                                    </div>
+
+                                                </fieldset>
+
+                                            </form>
                                         </div>
-                                    </div>  <!-- end card -->                    
-                                </div> <!-- end col-md-12 -->                                
+                                    </div> <!-- end card -->
+                                </div> <!-- end col-md-12 -->
                             </div>
                             <div class="col-md-6 col-md-offset-1">
                                 <div id="worldMap" style="height: 300px;"></div>
