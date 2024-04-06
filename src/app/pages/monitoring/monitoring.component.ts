@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { dataExample } from 'app/helpers/FormData';
+import { dataExample } from 'app/helpers/formData';
 import { successAlert } from 'app/helpers/sweetalert';
 import { Community } from 'app/interfaces/Community.interface';
 import { Department } from 'app/interfaces/Department.interface';
@@ -16,6 +16,7 @@ interface questionData {
     questionId: Number,
     descripcion: String,
     otherResponse: string,
+    recommendation: Boolean,
     key: string,
     key2: string,
 }
@@ -163,10 +164,13 @@ export class MonitoringComponent implements OnInit {
                     questionId: item.id,
                     descripcion: item.description,
                     otherResponse: "",
+                    recommendation : item.recommendation,
                     key: "questions?" + item.id,
                     key2: "recommendations?" + item.id,
                 });
             });
+
+            
 
             this.dataGroup = data;
 
@@ -174,7 +178,7 @@ export class MonitoringComponent implements OnInit {
                 group[question.key] = new FormControl(false, Validators.required);
 
                 if (question?.key2) {
-                    group[question.key2] = new FormControl("", Validators.required);
+                    group[question.key2] = new FormControl("");
                 }
 
             });
@@ -204,6 +208,7 @@ export class MonitoringComponent implements OnInit {
                 questionId: item.id,
                 descripcion: item.description,
                 otherResponse: "",
+                recommendation : item.recommendation,
                 key: "questions?" + item.id,
                 key2: "recommendations?" + item.id,
             });

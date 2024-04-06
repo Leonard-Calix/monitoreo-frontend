@@ -3,6 +3,7 @@ export interface Question {
     description: String;
     type: String;
     state: Boolean;
+    recommendation: Boolean;
     createdAt: Date;
     updatedAt: Date;
 }
