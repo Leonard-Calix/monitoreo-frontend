@@ -19,6 +19,7 @@ import { MaintenanceComponent } from '../pages/maintenance/maintenance.component
         CommonModule,
         RouterModule.forChild(DashboardRoutes),
         FormsModule,
+        ReactiveFormsModule,
         LbdModule
     ],
     declarations: [DashboardComponent, DepartmentComponent, MunicipalitiesComponent, UsersComponent, RolesComponent, CommunitiesComponent, MonitoringComponent, MaintenanceComponent]
