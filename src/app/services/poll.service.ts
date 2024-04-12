@@ -14,10 +14,14 @@ export class PollService {
   constructor(private readonly http: HttpClient) { }
 
   create(poll: CreatePoll): Observable<any> {
-    return this.http.post(`${this.baseUrl}/communities`, poll);
+    return this.http.post(`${this.baseUrl}/polls`, poll);
+  }
+
+  bulkCreate(body: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/polls/bluk-create`, body);
   }
 
   getAll() {
-    return this.http.get(`${this.baseUrl}/communities`);
+    return this.http.get(`${this.baseUrl}/polls`);
   }
 }

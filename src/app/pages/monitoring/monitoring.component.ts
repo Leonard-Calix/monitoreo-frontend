@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { dataExample } from 'app/helpers/formData';
 import { successAlert } from 'app/helpers/sweetalert';
 import { Community } from 'app/interfaces/Community.interface';
@@ -9,6 +10,7 @@ import { Question } from 'app/interfaces/Question.interface';
 import { CommunitiesService } from 'app/services/communities.service';
 import { DepartmentService } from 'app/services/department.service';
 import { MunicipalitiesService } from 'app/services/municipalities.service';
+import { PollService } from 'app/services/poll.service';
 import { QuestionService } from 'app/services/question.service';
 declare var $: any;
 
@@ -35,6 +37,8 @@ export class MonitoringComponent implements OnInit {
     dateMonitory: string = "";
     dataGroup: questionData[] = [];
     loadingQuestions: boolean = true;
+    generalRecommendation: string = "";
+
 
     formPoll: FormGroup;
 
@@ -47,7 +51,9 @@ export class MonitoringComponent implements OnInit {
         private readonly municipalitiesService: MunicipalitiesService,
         private readonly communitiesService: CommunitiesService,
         private readonly questionsService: QuestionService,
-        private formBuilder: FormBuilder
+        private readonly pollservice: PollService,
+        private formBuilder: FormBuilder,
+        private router:Router
     ) {
 
     }
@@ -164,13 +170,13 @@ export class MonitoringComponent implements OnInit {
                     questionId: item.id,
                     descripcion: item.description,
                     otherResponse: "",
-                    recommendation : item.recommendation,
+                    recommendation: item.recommendation,
                     key: "questions?" + item.id,
                     key2: "recommendations?" + item.id,
                 });
             });
 
-            
+
 
             this.dataGroup = data;
 
@@ -178,7 +184,7 @@ export class MonitoringComponent implements OnInit {
                 group[question.key] = new FormControl(false, Validators.required);
 
                 if (question?.key2) {
-                    group[question.key2] = new FormControl("");
+                    group[question.key2] = new FormControl("", question.recommendation && Validators.required);
                 }
 
             });
@@ -194,9 +200,39 @@ export class MonitoringComponent implements OnInit {
     save() {
         //console.log({ municipalityId: this.municipalityId, departmentId: this.departmentId, communityId: Number(this.communityId) });
 
-        console.log(this.formPoll.value)
+        let req: any[] = [];
 
-        //successAlert('Exitoso', 'Registro guardado con exito')
+        this.dataGroup.forEach(element => {
+            let questionId = Number(element.key.split('?')[1]);
+            req.push({
+                description: this.formPoll.get(element.key2).value,
+                response: this.formPoll.get(element.key).value,
+                QuestionId: questionId,
+                CommunityId: Number(this.communityId)
+            });
+        });
+
+        let body: any = {
+            polls: req,
+            survey: {
+                recomendation: this.generalRecommendation,
+                monitoringDate: '',
+                communityId: Number(this.communityId)
+            }
+        };
+
+        console.log(body);
+
+
+        this.pollservice.bulkCreate(body).subscribe({
+            error : (err) => {
+                successAlert('Exitoso', err)
+            },
+            complete() {
+                successAlert('Exitoso', 'Registro guardado con exito')
+            },
+        });
+
     }
 
     inicializeProperteForm() {
@@ -208,7 +244,7 @@ export class MonitoringComponent implements OnInit {
                 questionId: item.id,
                 descripcion: item.description,
                 otherResponse: "",
-                recommendation : item.recommendation,
+                recommendation: item.recommendation,
                 key: "questions?" + item.id,
                 key2: "recommendations?" + item.id,
             });
