@@ -13,6 +13,9 @@ import { RolesComponent } from '../pages/roles/roles.component';
 import { CommunitiesComponent } from '../pages/communities/communities.component';
 import { MonitoringComponent } from '../pages/monitoring/monitoring.component';
 import { MaintenanceComponent } from '../pages/maintenance/maintenance.component';
+import { CreatePullComponent } from '../pages/create-pull/create-pull.component';
+import { CreateQuestionComponent } from '../pages/create-question/create-question.component';
+import { EditeQuestionComponent } from '../pages/edite-question/edite-question.component';
 
 @NgModule({
     imports: [
@@ -22,7 +25,7 @@ import { MaintenanceComponent } from '../pages/maintenance/maintenance.component
         ReactiveFormsModule,
         LbdModule
     ],
-    declarations: [DashboardComponent, DepartmentComponent, MunicipalitiesComponent, UsersComponent, RolesComponent, CommunitiesComponent, MonitoringComponent, MaintenanceComponent]
+    declarations: [DashboardComponent, DepartmentComponent, MunicipalitiesComponent, UsersComponent, RolesComponent, CommunitiesComponent, MonitoringComponent, MaintenanceComponent, CreatePullComponent, CreateQuestionComponent, EditeQuestionComponent]
 })
 
 export class DashboardModule {}

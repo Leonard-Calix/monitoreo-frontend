@@ -53,7 +53,7 @@ export class MonitoringComponent implements OnInit {
         private readonly questionsService: QuestionService,
         private readonly pollservice: PollService,
         private formBuilder: FormBuilder,
-        private router:Router
+        private router: Router
     ) {
 
     }
@@ -166,14 +166,19 @@ export class MonitoringComponent implements OnInit {
             let group: any = {};
 
             res.data.forEach((item: Question) => {
-                data.push({
-                    questionId: item.id,
-                    descripcion: item.description,
-                    otherResponse: "",
-                    recommendation: item.recommendation,
-                    key: "questions?" + item.id,
-                    key2: "recommendations?" + item.id,
-                });
+
+                if (item.state) {
+                    data.push({
+                        questionId: item.id,
+                        descripcion: item.description,
+                        otherResponse: "",
+                        recommendation: item.recommendation,
+                        key: "questions?" + item.id,
+                        key2: "recommendations?" + item.id,
+                    });
+                }
+
+
             });
 
 
@@ -225,7 +230,7 @@ export class MonitoringComponent implements OnInit {
 
 
         this.pollservice.bulkCreate(body).subscribe({
-            error : (err) => {
+            error: (err) => {
                 successAlert('Exitoso', err)
             },
             complete() {

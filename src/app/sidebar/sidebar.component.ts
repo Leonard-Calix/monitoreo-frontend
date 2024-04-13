@@ -81,6 +81,7 @@ export const ROUTES: RouteInfo[] = [
             { path: 'typography', title: 'Typography', ab: 'T' }
         ]
     },
+    /*
     {
         path: '/forms',
         title: 'Forms TETS',
@@ -140,6 +141,7 @@ export const ROUTES: RouteInfo[] = [
             { path: 'lock', title: 'Lock Screen Page', ab: 'LSP' }
         ]
     }
+    */
 ];
 
 @Component({

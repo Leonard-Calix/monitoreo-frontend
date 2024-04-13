@@ -1,7 +1,7 @@
 export interface Question {
     id?: Number;
-    description: String;
-    type: String;
+    description: string;
+    type: string;
     state: Boolean;
     recommendation: Boolean;
     createdAt: Date;
