@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentInit, inject } from '@angular/core';
+import { AuthService } from 'app/services/auth.service';
 
 declare var $: any;
 //Metadata
@@ -149,7 +150,12 @@ export const ROUTES: RouteInfo[] = [
     templateUrl: 'sidebar.component.html',
 })
 
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
+    
+    authService = inject(AuthService);
+    
+    name: String = '';
+
     public menuItems: any[];
     isNotMobileMenu() {
         if ($(window).width() > 991) {
@@ -171,7 +177,10 @@ export class SidebarComponent {
         } else {
             $('html').addClass('perfect-scrollbar-off');
         }
+        
+        this.name = this.authService.getName();
     }
+
     ngAfterViewInit() {
         var $sidebarParent = $('.sidebar .nav > li.active .collapse li.active > a').parent().parent().parent();
 

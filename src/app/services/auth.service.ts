@@ -17,7 +17,11 @@ export class AuthService {
   _currentUser: User = null;
   _authStatus: AuthStatus = AuthStatus.checking;
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {
+
+    this.checkAuthStatus().subscribe();
+
+  }
 
   login(email: string, password: string): Observable<boolean> {
 
@@ -30,6 +34,7 @@ export class AuthService {
           this._currentUser = user;
           this._authStatus = AuthStatus.authenticate;
           localStorage.setItem('token', token)
+          localStorage.setItem('AuthStatus', AuthStatus.authenticate)
           console.log({ user, token })
         }),
         map(() => true),
@@ -56,7 +61,7 @@ export class AuthService {
           this._currentUser = user;
           this._authStatus = AuthStatus.authenticate;
           localStorage.setItem('token', token)
-
+          localStorage.setItem('AuthStatus', AuthStatus.authenticate)
           return true;
         }),
         //error
@@ -71,5 +76,15 @@ export class AuthService {
     localStorage.removeItem('token');
     this._authStatus = AuthStatus.notAuthenticate;
   }
+
+  getName(): string {
+    return this._currentUser.firstName.concat(' ', String(this._currentUser.lastName));
+  }
+
+  getCheckStatus(): string {
+    // Verificar si el usuario está autenticado
+    return this._authStatus;
+  }
+
 
 }

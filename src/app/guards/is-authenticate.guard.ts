@@ -7,16 +7,17 @@ import { Observable } from 'rxjs';
 export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
 
   const authService = inject(AuthService);
+  const router = inject(Router);
 
-  if (authService._authStatus === AuthStatus.authenticate) {
+  if (authService._authStatus == AuthStatus.authenticate) {
     return true
   }
 
-  if (authService._authStatus === AuthStatus.checking) {
-    return false
-  }
+  //if (authService._authStatus == AuthStatus.checking) {
+  //router.navigateByUrl('/pages/login');
+  //return false
+  //}
 
-  const router = inject(Router);
 
   const url = state.url;
   localStorage.setItem('url', url);
