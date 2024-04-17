@@ -39,33 +39,13 @@ export const ROUTES: RouteInfo[] = [
         type: 'link',
         icontype: 'pe-7s-graph'
     },
-    {
-        path: '/department',
-        title: 'Departamentos',
-        type: 'link',
-        icontype: 'pe-7s-graph'
-    },
-    {
-        path: '/municipalities',
-        title: 'Municipios',
-        type: 'link',
-        icontype: 'pe-7s-graph'
-    },
+
     {
         path: '/users-list',
         title: 'Usuarios',
         type: 'link',
         icontype: 'pe-7s-graph'
     },
-    {
-        path: '/roles',
-        title: 'Permisos',
-        type: 'link',
-        icontype: 'pe-7s-graph'
-    },
-
-
-
 
     {
         path: '/components',
@@ -151,9 +131,9 @@ export const ROUTES: RouteInfo[] = [
 })
 
 export class SidebarComponent implements OnInit {
-    
+
     authService = inject(AuthService);
-    
+
     name: String = '';
 
     public menuItems: any[];
@@ -177,7 +157,7 @@ export class SidebarComponent implements OnInit {
         } else {
             $('html').addClass('perfect-scrollbar-off');
         }
-        
+
         this.name = this.authService.getName();
     }
 

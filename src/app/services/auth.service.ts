@@ -35,7 +35,7 @@ export class AuthService {
           this._authStatus = AuthStatus.authenticate;
           localStorage.setItem('token', token)
           localStorage.setItem('AuthStatus', AuthStatus.authenticate)
-          console.log({ user, token })
+          //console.log({ user, token })
         }),
         map(() => true),
         // error

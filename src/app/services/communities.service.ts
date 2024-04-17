@@ -10,25 +10,33 @@ import { Community } from 'app/interfaces/Community.interface';
 export class CommunitiesService {
 
   private readonly baseUrl: string = environment.baseUrl;
-  token = localStorage.getItem('token');
+  token = '';
 
-  headers = new HttpHeaders();
 
   constructor(private readonly http: HttpClient) {
-    this.headers.set('Authorization', 'Bearer ' + this.token);
+    this.token = localStorage.getItem('token');
   }
 
   create(department: Community): Observable<any> {
-    return this.http.post(`${this.baseUrl}/communities`, department);
+
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.post(`${this.baseUrl}/communities`, department, { headers });
+
+
   }
 
   getAll() {
 
-    return this.http.get(`${this.baseUrl}/communities`, { headers: this.headers });
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.get(`${this.baseUrl}/communities`, { headers });
   }
 
   getByCommunityByMunicipalityId(id: number) {
-    return this.http.get(`${this.baseUrl}/communities/municipality/` + id, { headers: this.headers });
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.get(`${this.baseUrl}/communities/municipality/` + id, { headers });
   }
 
 

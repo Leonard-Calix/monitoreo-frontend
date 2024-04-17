@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'environments/environment';
 import { Municipality } from 'app/interfaces/Municipality.interface';
 import { Observable } from 'rxjs';
@@ -10,18 +10,30 @@ import { Observable } from 'rxjs';
 export class MunicipalitiesService {
 
   private readonly baseUrl: string = environment.baseUrl;
+  token = '';
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {
+    this.token = localStorage.getItem('token');
+  }
 
   create(department: Municipality): Observable<any> {
-    return this.http.post(`${this.baseUrl}/municipalities`, department);
+
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.post(`${this.baseUrl}/municipalities`, department, { headers });
   }
 
   getAll() {
-    return this.http.get(`${this.baseUrl}/municipalities`);
+
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.get(`${this.baseUrl}/municipalities`, { headers });
   }
 
   getByDepartmentId(id: number) {
-    return this.http.get(`${this.baseUrl}/municipalities/department/`+ id);
+
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.get(`${this.baseUrl}/municipalities/department/` + id, { headers });
   }
 }

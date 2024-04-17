@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Department } from 'app/interfaces/Department.interface';
 import { Question } from 'app/interfaces/Question.interface';
@@ -11,14 +11,26 @@ import { Observable } from 'rxjs';
 export class QuestionService {
 
   private readonly baseUrl: string = environment.baseUrl;
+  token: string = '';
 
-  constructor(private readonly http: HttpClient) { }
+
+  constructor(private readonly http: HttpClient) {
+
+    this.token = localStorage.getItem('token');
+
+  }
 
   create(question: Question): Observable<any> {
-    return this.http.post(`${this.baseUrl}/questions`, question);
+
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+
+    return this.http.post(`${this.baseUrl}/questions`, question, { headers });
   }
 
   getAll() {
-    return this.http.get(`${this.baseUrl}/questions`);
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.get(`${this.baseUrl}/questions`, { headers });
   }
 }
