@@ -21,9 +21,13 @@ export class ServeysComponent implements OnInit {
 
   getData() {
     this.serveysService.findAll().subscribe((data: any) => {
-      console.log(data)
       this.list = data.data
     });
+  }
+
+  dateFormat(date:string){
+    let fecha = new Date(date);    
+    return `${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()}`;
   }
 
 

@@ -31,7 +31,7 @@
                                     <td colspan="1">{{ item.email }}</td>
                                     <td colspan="1">{{ item.userName }}</td>
                                     <td colspan="1">{{ item.active ? 'ACTIVO' : 'INACTIVO' }}</td>
-                                    <a routerLink="/user/change-status/+{{ item.id }}" class="btn btn-success btn-fill btn-wd">
+                                    <a routerLink="/user/change-status/{{ item.id }}" class="btn btn-success btn-fill btn-wd">
                                         Modificar
                                     </a>
                                 </tr>

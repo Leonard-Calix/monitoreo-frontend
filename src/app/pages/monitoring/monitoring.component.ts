@@ -210,4 +210,11 @@ export class MonitoringComponent implements OnInit {
         this.formPoll = this.formBuilder.group(group);
     }
 
+    dateFormat(date: string) {
+
+        let fecha = new Date(date);
+        return `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`;
+
+    }
+
 }

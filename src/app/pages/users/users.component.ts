@@ -9,6 +9,7 @@ import { UsersService } from 'app/services/users.service';
 export class UsersComponent implements OnInit {
 
   data: any[] = [];
+  currenUser: any;
 
   constructor(private userService: UsersService) {
 
@@ -22,11 +23,7 @@ export class UsersComponent implements OnInit {
 
     this.userService.findAll().subscribe((resp: any) => {
       this.data = resp.data;
-      console.log(resp);
     });
-
-
   }
-
 
 }

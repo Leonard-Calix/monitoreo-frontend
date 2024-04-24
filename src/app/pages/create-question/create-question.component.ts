@@ -22,7 +22,7 @@ export class CreateQuestionComponent implements OnInit {
   ngOnInit(): void {
 
     this.formGrup = new FormGroup({
-      description: new FormControl('', Validators.required),
+      description: new FormControl('', [Validators.required, Validators.min(10)]),
       type: new FormControl("0", [Validators.required, Validators.min(2)]),
       state: new FormControl("0", [Validators.required, Validators.min(2)]),
       recommendation: new FormControl("0", [Validators.required, Validators.min(2)]),
@@ -36,7 +36,7 @@ export class CreateQuestionComponent implements OnInit {
 
   create() {
     this.questionService.create(this.formGrup.value).subscribe((data: any) => {
-      if(data.ok){
+      if (data.ok) {
         this.showMessage();
       }
     });

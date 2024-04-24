@@ -86,5 +86,9 @@ export class AuthService {
     return this._authStatus;
   }
 
+  getCurrenUser(): any {
+    return this._currentUser;
+  }
+
 
 }

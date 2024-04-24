@@ -34,7 +34,7 @@
                                             <td>{{ item.recomendation}}</td>
                                             <td> {{ item.Community.nameC  }} </td>
                                             <td> {{ item.User.userName}} </td>
-                                            <td> {{ item.monitoringDate}} </td>
+                                            <td> {{ dateFormat(item.monitoringDate)}} </td>
                                             <td> <a routerLink="/monitoring-detail/ + {{ item.id }}" class="btn btn-success btn-fill btn-wd">
                                                 Detalle
                                             </a> </td>

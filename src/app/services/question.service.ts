@@ -23,14 +23,23 @@ export class QuestionService {
   create(question: Question): Observable<any> {
 
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
-
-
     return this.http.post(`${this.baseUrl}/questions`, question, { headers });
+  }
+
+  update(question: Question, id: number): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+    return this.http.put(`${this.baseUrl}/questions/${id}`, question, { headers });
   }
 
   getAll() {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
 
     return this.http.get(`${this.baseUrl}/questions`, { headers });
+  }
+
+  findOne(id: number) {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.get(`${this.baseUrl}/questions/` + id, { headers });
   }
 }

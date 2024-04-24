@@ -23,7 +23,6 @@ export class MaintenanceComponent implements OnInit {
   getQuestions() {
     this.questionService.getAll().subscribe((resp: any) => {
       this.questions = resp.data;
-      console.log(resp)
     })
   }
 

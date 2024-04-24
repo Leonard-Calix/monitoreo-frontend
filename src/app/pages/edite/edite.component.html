@@ -8,12 +8,12 @@
               <p class="category"></p>
             </div>
             <div class="content mt-5">
-              <form [formGroup]="formGrup" (ngSubmit)="create()" class="form-horizontal" *ngIf="!loading" >
+              <form [formGroup]="formGrup" (ngSubmit)="update()" class="form-horizontal" *ngIf="!loading" >
                 <fieldset>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Ingrese la Pregunta:</label>
                     <div class="col-sm-10">
-                      <input formControlName="description" type="text" class="form-control" placeholder="Ingrese la Pregunta" />
+                      <input disabled="true" formControlName="description" type="text" class="form-control" placeholder="Ingrese la Pregunta" />
                     </div>
                   </div>
                 </fieldset>
@@ -62,9 +62,9 @@
                   <button type="submit" [disabled]="formGrup.invalid" class="btn btn-success btn-fill btn-wd">
                     Guardar
                   </button>
-                  <button class="btn btn-danger btn-fill btn-wd">
+                  <a routerLink="/maintenance" class="btn btn-danger btn-fill btn-wd">
                     Cancelar
-                  </button>
+                  </a>
                 </div>
               </form>
             </div>

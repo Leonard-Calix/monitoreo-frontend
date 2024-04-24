@@ -25,7 +25,15 @@ export class UsersService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
 
     return this.http.post<any>(`${this.baseUrl}/users`, user, { headers });
-    
+
+  }
+
+  update(user: any, id: number): Observable<any> {
+
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.put<any>(`${this.baseUrl}/users/${id}`, user, { headers });
+
   }
 
   findAll(): Observable<any> {
@@ -35,4 +43,10 @@ export class UsersService {
     return this.http.get(`${this.baseUrl}/users`, { headers });
   }
 
+  findOne(id: any): Observable<any> {
+
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+
+    return this.http.get(`${this.baseUrl}/users/${id}`, { headers });
+  }
 }
