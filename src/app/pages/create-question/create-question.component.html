@@ -8,12 +8,13 @@
             <p class="category"></p>
           </div>
           <div class="content mt-5">
-            <form [formGroup]="formGrup" (ngSubmit)="create()" class="form-horizontal" *ngIf="!loading" >
+            <form [formGroup]="formGrup" (ngSubmit)="create()" class="form-horizontal" *ngIf="!loading">
               <fieldset>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Ingrese la Pregunta:</label>
                   <div class="col-sm-10">
-                    <input formControlName="description" type="text" class="form-control" placeholder="Ingrese la Pregunta" />
+                    <input formControlName="description" type="text" class="form-control"
+                      placeholder="Ingrese la Pregunta" />
                   </div>
                 </div>
               </fieldset>
@@ -22,7 +23,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Tipo Pregunta</label>
                   <div class="col-sm-10">
-                    <select formControlName="type" class="form-control"  id="pregunta" placeholder="pregunta">
+                    <select formControlName="type" class="form-control" id="pregunta" placeholder="pregunta">
                       <option value="0">Seleccione un Tipo</option>
                       <option value="D">Desarrollo Local</option>
                       <option value="S">Salud</option>
@@ -61,9 +62,6 @@
               <div class="content">
                 <button type="submit" [disabled]="formGrup.invalid" class="btn btn-success btn-fill btn-wd">
                   Guardar
-                </button>
-                <button class="btn btn-danger btn-fill btn-wd">
-                  Cancelar
                 </button>
               </div>
             </form>

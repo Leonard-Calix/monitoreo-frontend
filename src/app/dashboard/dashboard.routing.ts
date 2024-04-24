@@ -12,6 +12,8 @@ import { EditeQuestionComponent } from 'app/pages/edite-question/edite-question.
 import { ServeysComponent } from 'app/pages/serveys/serveys.component';
 import { MonitoringDetailComponent } from 'app/pages/monitoring-detail/monitoring-detail.component';
 import { NewUsersComponent } from 'app/pages/new-users/new-users.component';
+import { EditeComponent } from 'app/pages/edite/edite.component';
+import { ChangeStateUserComponent } from 'app/pages/change-state-user/change-state-user.component';
 
 
 export const DashboardRoutes: Routes = [{
@@ -65,6 +67,14 @@ export const DashboardRoutes: Routes = [{
         {
             path: 'monitoring-detail/:id',
             component: MonitoringDetailComponent
+        },
+        {
+            path: 'maintenance/edite-question/:id',
+            component: EditeComponent
+        },
+        {
+            path: 'user/change-status/:id',
+            component: ChangeStateUserComponent
         },
     ]
 }];

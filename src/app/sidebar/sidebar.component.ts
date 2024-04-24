@@ -46,7 +46,7 @@ export const ROUTES: RouteInfo[] = [
         type: 'link',
         icontype: 'pe-7s-graph'
     },
-
+/*
     {
         path: '/components',
         title: 'Components',
@@ -62,7 +62,6 @@ export const ROUTES: RouteInfo[] = [
             { path: 'typography', title: 'Typography', ab: 'T' }
         ]
     },
-    /*
     {
         path: '/forms',
         title: 'Forms TETS',
@@ -167,5 +166,9 @@ export class SidebarComponent implements OnInit {
         var collapseId = $sidebarParent.siblings('a').attr("href");
 
         $(collapseId).collapse("show");
+    }
+
+    logout(){
+        this.authService.logout();
     }
 }

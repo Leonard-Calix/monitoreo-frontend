@@ -19,6 +19,8 @@ import { EditeQuestionComponent } from '../pages/edite-question/edite-question.c
 import { ServeysComponent } from '../pages/serveys/serveys.component';
 import { MonitoringDetailComponent } from '../pages/monitoring-detail/monitoring-detail.component';
 import { NewUsersComponent } from '../pages/new-users/new-users.component';
+import { ChangeStateUserComponent } from '../pages/change-state-user/change-state-user.component';
+import { EditeComponent } from '../pages/edite/edite.component';
 
 @NgModule({
     imports: [
@@ -28,7 +30,7 @@ import { NewUsersComponent } from '../pages/new-users/new-users.component';
         ReactiveFormsModule,
         LbdModule
     ],
-    declarations: [DashboardComponent, DepartmentComponent, MunicipalitiesComponent, UsersComponent, RolesComponent, CommunitiesComponent, MonitoringComponent, MaintenanceComponent, CreatePullComponent, CreateQuestionComponent, EditeQuestionComponent, ServeysComponent, MonitoringDetailComponent, NewUsersComponent]
+    declarations: [DashboardComponent, DepartmentComponent, MunicipalitiesComponent, UsersComponent, RolesComponent, CommunitiesComponent, MonitoringComponent, MaintenanceComponent, CreatePullComponent, CreateQuestionComponent, EditeQuestionComponent, ServeysComponent, MonitoringDetailComponent, NewUsersComponent, ChangeStateUserComponent, EditeComponent]
 })
 
 export class DashboardModule { }

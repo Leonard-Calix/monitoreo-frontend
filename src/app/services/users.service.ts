@@ -32,7 +32,7 @@ export class UsersService {
 
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
 
-    return this.http.post(`${this.baseUrl}/users`, { headers });
+    return this.http.get(`${this.baseUrl}/users`, { headers });
   }
 
 }
