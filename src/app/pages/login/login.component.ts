@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
         this.authService.login(email || '', password || '').subscribe({
             next: () => this.router.navigate(['/dashboard']),
-            error: (message) => { Swal.fire('Error', message, 'error') }
+            error: (message) => { Swal.fire('Error', 'Usuario / Password  no son correctos', 'error') }
         });
     }
 }
